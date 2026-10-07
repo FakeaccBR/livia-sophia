@@ -1,619 +1,149 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chá de Bebê - Lívia Sophia</title>
-    <!-- Fontes do Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    <!-- Font Awesome para ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        :root {
-            --gold-primary: #d4af37;
-            --gold-light: #f3e5ab;
-            --gold-dark: #aa7c11;
-            --bg-color: #faf8f5;
-            --text-color: #5c5549;
-            --card-bg: rgba(255, 255, 255, 0.95);
-        }
-
-        body {
-            background: linear-gradient(135deg, #fffdfa 0%, #f7f3ec 100%);
-            min-height: 100vh;
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        /* Content wrapper responsivo para computador e telemóvel */
-        .site-container {
-            width: 100%;
-            max-width: 800px;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            padding: 40px 30px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .star {
-            color: #ebd18c;
-            position: absolute;
-            animation: pulse 2s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.2); opacity: 1; }
-        }
-
-        /* Ilustração */
-        .hero-illustration {
-            position: relative;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .bear-balloon-wrapper {
-            width: 180px;
-            height: 200px;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-            100% { transform: translateY(0px) rotate(0deg); }
-        }
-
-        /* Tipografia */
-        .main-title {
-            font-family: 'Caveat', cursive;
-            font-size: 3.8rem;
-            color: var(--gold-dark);
-            line-height: 1.1;
-        }
-
-        .baby-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: #796851;
-            font-weight: 700;
-            margin: 5px 0 15px 0;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .phrase {
-            font-size: 1rem;
-            color: #7a7367;
-            margin: 0 auto 30px;
-            max-width: 600px;
-            line-height: 1.5;
-            font-style: italic;
-        }
-
-        /* Bloco de Data e Hora */
-        .date-time-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin: 25px 0;
-        }
-
-        .big-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--gold-dark);
-            font-weight: 700;
-            line-height: 1;
-        }
-
-        .label {
-            font-size: 0.85rem;
-            color: #8c8375;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-top: 5px;
-            text-transform: uppercase;
-        }
-
-        .divider-star { color: var(--gold-primary); font-size: 1.5rem; }
-
-        /* Botões Principais */
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin: 35px 0;
-            flex-wrap: wrap;
-        }
-
-        .btn-circle-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-            width: 120px;
-        }
-
-        .btn-circle {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 2px solid var(--gold-primary);
-            background: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .btn-circle i { font-size: 1.6rem; color: var(--gold-dark); }
-
-        .btn-circle-item:hover .btn-circle {
-            transform: translateY(-5px);
-            background-color: var(--gold-light);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
-        }
-
-        .btn-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #635b4f;
-            margin-top: 10px;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        /* Mural de Recados */
-        .section-box {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 30px auto;
-            max-width: 550px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--gold-dark);
-            margin-bottom: 15px;
-        }
-
-        .guest-message-form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .guest-input, .guest-textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e0d7c6;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            outline: none;
-            background: #faf8f5;
-        }
-
-        .guest-textarea { resize: none; height: 80px; }
-
-        .btn-submit {
-            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .btn-submit:hover { opacity: 0.9; }
-
-        .btn-secondary {
-            background: #ffffff;
-            color: var(--gold-dark);
-            border: 1.5px solid var(--gold-primary);
-            padding: 10px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            cursor: pointer;
-            margin-top: 12px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover { background: var(--gold-light); }
-
-        /* Lista de Recados na Modal */
-        .messages-list {
-            max-height: 300px;
-            overflow-y: auto;
-            text-align: left;
-            margin-top: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding-right: 5px;
-        }
-
-        .msg-card {
-            background: #fdfbf7;
-            border: 1px solid #ebdccb;
-            border-radius: 10px;
-            padding: 12px 15px;
-        }
-
-        .msg-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--gold-dark);
-            margin-bottom: 4px;
-        }
-
-        .msg-time { font-size: 0.7rem; color: #a3998b; font-weight: normal; }
-
-        .msg-body { font-size: 0.85rem; color: #555; line-height: 1.4; font-style: italic; }
-
-        /* Contagem Regressiva */
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-
-        .time-card {
-            background: #ffffff;
-            padding: 10px 15px;
-            border-radius: 10px;
-            border: 1px solid #f0e6d2;
-            min-width: 70px;
-        }
-
-        .time-card .num { font-weight: 700; color: var(--gold-dark); font-size: 1.3rem; }
-        .time-card .txt { font-size: 0.65rem; color: #8c8375; text-transform: uppercase; }
-
-        /* Modais */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(3px);
-        }
-
-        .modal-content {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 30px 25px;
-            width: 100%;
-            max-width: 400px;
-            position: relative;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            text-align: center;
-            animation: popIn 0.3s ease;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px; right: 18px;
-            font-size: 1.4rem;
-            color: #8c8375;
-            cursor: pointer;
-        }
-
-        .bottom-decor {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .air-balloon { width: 60px; animation: floatSlow 6s ease-in-out infinite; }
-
-        @keyframes floatSlow {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-12px); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="site-container">
-        <i class="fa-solid fa-star star" style="top: 30px; left: 40px; font-size: 12px;"></i>
-        <i class="fa-solid fa-star star" style="top: 50px; right: 50px; font-size: 16px;"></i>
-
-        <!-- Ilustração -->
-        <div class="hero-illustration">
-            <svg class="bear-balloon-wrapper" viewBox="0 0 200 240" fill="none">
-                <path d="M20 60 Q30 45 45 50 Q55 35 75 45 Q90 40 95 55 Q105 60 95 75 Q85 85 70 80 Q55 85 40 80 Q25 85 20 60 Z" fill="#f2ede4" opacity="0.8"/>
-                <circle cx="70" cy="55" r="32" fill="url(#grad-white)"/>
-                <ellipse cx="62" cy="45" rx="8" ry="12" fill="#ffffff" opacity="0.6"/>
-                <circle cx="125" cy="50" r="30" fill="url(#grad-gold)"/>
-                <ellipse cx="118" cy="40" rx="7" ry="10" fill="#ffffff" opacity="0.4"/>
-                <circle cx="95" cy="35" r="28" fill="#e6d5b8"/>
-                <path d="M70 87 L85 130" stroke="#c2b299" stroke-width="1.2"/>
-                <path d="M125 80 L88 130" stroke="#c2b299" stroke-width="1.2"/>
-                <path d="M95 63 L86 130" stroke="#c2b299" stroke-width="1.2"/>
-                <path d="M85 128 L80 110" stroke="#c29b7f" stroke-width="10" stroke-linecap="round"/>
-                <circle cx="90" cy="145" r="22" fill="#d4ad8d"/>
-                <circle cx="73" cy="130" r="8" fill="#d4ad8d"/>
-                <circle cx="73" cy="130" r="5" fill="#e8cfb8"/>
-                <circle cx="107" cy="130" r="8" fill="#d4ad8d"/>
-                <circle cx="107" cy="130" r="5" fill="#e8cfb8"/>
-                <ellipse cx="90" cy="150" rx="8" ry="6" fill="#f5e8dc"/>
-                <ellipse cx="90" cy="147" rx="3" ry="2" fill="#594333"/>
-                <circle cx="83" cy="142" r="2.5" fill="#3d2e23"/>
-                <circle cx="97" cy="142" r="2.5" fill="#3d2e23"/>
-                <path d="M84 163 L96 167 L96 159 Z" fill="#c9a038"/>
-                <path d="M96 163 L84 167 L84 159 Z" fill="#c9a038"/>
-                <circle cx="90" cy="163" r="2.5" fill="#aa7c11"/>
-                <ellipse cx="90" cy="180" rx="18" ry="20" fill="#d4ad8d"/>
-                <ellipse cx="90" cy="181" rx="11" ry="13" fill="#e8cfb8"/>
-                <circle cx="75" cy="195" r="8" fill="#d4ad8d"/>
-                <circle cx="105" cy="195" r="8" fill="#d4ad8d"/>
-                <defs>
-                    <linearGradient id="grad-gold" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#f0d38d" />
-                        <stop offset="100%" stop-color="#b88e28" />
-                    </linearGradient>
-                    <linearGradient id="grad-white" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#ffffff" />
-                        <stop offset="100%" stop-color="#ebdcd0" />
-                    </linearGradient>
-                </defs>
-            </svg>
-        </div>
-
-        <!-- Título Principal -->
-        <h1 class="main-title">Chá de Bebê</h1>
-        <div class="baby-name">Lívia Sophia</div>
-        
-        <p class="phrase">"A nossa família está crescendo e o amor transbordando. Venha celebrar a chegada da nossa princesinha conosco!"</p>
-
-        <!-- Data e Horário -->
-        <div class="date-time-container">
-            <div class="date-box">
-                <div class="big-number">29.11</div>
-                <div class="label">Sábado</div>
-            </div>
-            <div class="divider-star"><i class="fa-solid fa-star"></i></div>
-            <div class="time-box">
-                <div class="big-number">14:30</div>
-                <div class="label">Horas</div>
-            </div>
-        </div>
-
-        <!-- Botões Circulares -->
-        <div class="action-buttons">
-            <div class="btn-circle-item" onclick="openModal('modal-rsvp')">
-                <div class="btn-circle"><i class="fa-solid fa-user-check"></i></div>
-                <div class="btn-label">Confirmar Presença</div>
-            </div>
-
-            <div class="btn-circle-item" onclick="openModal('modal-location')">
-                <div class="btn-circle"><i class="fa-solid fa-location-dot"></i></div>
-                <div class="btn-label">Local da Festa</div>
-            </div>
-
-            <div class="btn-circle-item" onclick="openModal('modal-gifts')">
-                <div class="btn-circle"><i class="fa-solid fa-gift"></i></div>
-                <div class="btn-label">Lista de Presentes</div>
-            </div>
-        </div>
-
-        <!-- Mural de Recados -->
-        <div class="section-box">
-            <div class="section-title"><i class="fa-regular fa-heart"></i> Deixe um Recadinho</div>
-            <form class="guest-message-form" onsubmit="sendRegistry(event)">
-                <input type="text" id="guest-name" class="guest-input" placeholder="Seu nome" required>
-                <textarea id="guest-msg" class="guest-textarea" placeholder="Escreva uma mensagem de carinho para a Lívia Sophia..." required></textarea>
-                <button type="submit" class="btn-submit">Enviar Mensagem</button>
-            </form>
-
-            <button class="btn-secondary" onclick="openMessagesModal()">
-                <i class="fa-solid fa-comments"></i> Ver Recados Recebidos (<span id="msg-count">0</span>)
-            </button>
-        </div>
-
-        <!-- Contagem Regressiva -->
-        <div class="section-box" style="background: transparent; border: none; padding: 5px;">
-            <div class="label" style="margin-bottom: 10px;">Faltam apenas:</div>
-            <div class="countdown-container">
-                <div class="time-card"><div class="num" id="days">00</div><div class="txt">Dias</div></div>
-                <div class="time-card"><div class="num" id="hours">00</div><div class="txt">Horas</div></div>
-                <div class="time-card"><div class="num" id="mins">00</div><div class="txt">Min</div></div>
-                <div class="time-card"><div class="num" id="secs">00</div><div class="txt">Seg</div></div>
-            </div>
-        </div>
-
-        <!-- Decoração Inferior -->
-        <div class="bottom-decor">
-            <svg class="air-balloon" viewBox="0 0 100 120" fill="none">
-                <ellipse cx="50" cy="40" rx="30" ry="35" fill="url(#grad-gold)"/>
-                <rect x="42" y="90" width="16" height="12" rx="2" fill="#a87f32"/>
-            </svg>
-            <div style="font-size: 0.8rem; color: #a3998b; padding-bottom: 5px;">Com amor, Pais da Lívia Sophia</div>
-        </div>
-    </div>
-
-    <!-- MODAL RSVP (WHATSAPP) -->
-    <div id="modal-rsvp" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-rsvp')">&times;</span>
-            <h3 class="section-title">Confirmar Presença</h3>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Por favor, confirme se poderá estar conosco!</p>
-            <form onsubmit="confirmRSVP(event)">
-                <input type="text" id="rsvp-name" class="guest-input" placeholder="Seu Nome Completo" required style="margin-bottom: 10px;">
-                <input type="number" id="rsvp-guests" class="guest-input" placeholder="Nº de Acompanhantes" min="0" max="10" value="0" required style="margin-bottom: 15px;">
-                <button type="submit" class="btn-submit" style="width: 100%; background: #25D366;">
-                    <i class="fa-brands fa-whatsapp"></i> Confirmar pelo WhatsApp
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- MODAL LOCALIZAÇÃO -->
-    <div id="modal-location" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-location')">&times;</span>
-            <h3 class="section-title">Local do Evento</h3>
-            <p style="font-size: 0.95rem; color: #555; margin: 10px 0; font-weight: 600;">Espaço Birth Fest</p>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Via A-3, 40 - Santa Cruz, Rio de Janeiro - RJ</p>
-            <a href="https://maps.app.goo.gl/qrmr8oFCHa3uUF7g6" target="_blank" class="btn-submit" style="display: block; text-decoration: none;">Ver no Google Maps</a>
-        </div>
-    </div>
-
-    <!-- MODAL LISTA DE PRESENTES -->
-    <div id="modal-gifts" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-gifts')">&times;</span>
-            <h3 class="section-title">Sugestão de Presentes</h3>
-            <ul style="text-align: left; font-size: 0.9rem; color: #555; margin-bottom: 15px; padding-left: 20px; line-height: 1.6;">
-                <li>Fraldas descartáveis (Tamanhos M e G)</li>
-                <li>Toalhas umedecidas e itens de higiene</li>
-                <li>Roupinhas para a Lívia Sophia (3 a 12 meses)</li>
-            </ul>
-            <button class="btn-submit" style="width: 100%;" onclick="closeModal('modal-gifts')">Fechar</button>
-        </div>
-    </div>
-
-    <!-- MODAL VER RECADOS DEIXADOS -->
-    <div id="modal-messages" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('modal-messages')">&times;</span>
-            <h3 class="section-title"><i class="fa-solid fa-envelope-open-text"></i> Recadinhos Recebidos</h3>
-            <div id="messages-container" class="messages-list">
-                <!-- Recados renderizados via JavaScript -->
-            </div>
-        </div>
-    </div>
+<!-- 1. Importar as bibliotecas do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
 
     <script>
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+        // 2. COLE AQUI O SEU FIREBASE CONFIG (substitua pelo que copiou no Passo 3)
+        const firebaseConfig = {
+  apiKey: "AIzaSyANDE-OWfExJcgAM_3ygvN6320qW2V40tM",
+  authDomain: "liviasophia.firebaseapp.com",
+  projectId: "liviasophia",
+  storageBucket: "liviasophia.firebasestorage.app",
+  messagingSenderId: "597364587709",
+  appId: "1:597364587709:web:7242d3a32475f4adb10bd4",
+  measurementId: "G-Q5YEG7NBZ2"
+};
+        };
 
-        function getMessages() {
-            return JSON.parse(localStorage.getItem('livia_messages') || '[]');
+        // 3. Inicializar o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // 4. Modais
+        function openModal(id) {
+            var el = document.getElementById(id);
+            if(el) el.style.display = 'flex';
         }
 
-        function sendRegistry(e) {
-            e.preventDefault();
-            const name = document.getElementById('guest-name').value;
-            const msg = document.getElementById('guest-msg').value;
-            const time = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-
-            const messages = getMessages();
-            messages.unshift({ name, msg, time });
-            localStorage.setItem('livia_messages', JSON.stringify(messages));
-
-            alert(`Obrigado pelo carinho, ${name}! Sua mensagem foi registrada! ❤️`);
-            document.getElementById('guest-name').value = '';
-            document.getElementById('guest-msg').value = '';
-            updateMessageCount();
-        }
-
-        function updateMessageCount() {
-            const count = getMessages().length;
-            document.getElementById('msg-count').innerText = count;
+        function closeModal(id) {
+            var el = document.getElementById(id);
+            if(el) el.style.display = 'none';
         }
 
         function openMessagesModal() {
-            const messages = getMessages();
-            const container = document.getElementById('messages-container');
+            openModal('modal-messages');
+        }
+
+        // 5. Ler os recados em tempo real (qualquer convidado novo que escreva aparece para todos!)
+        db.collection("recados").orderBy("createdAt", "desc").onSnapshot(function(snapshot) {
+            var messages = [];
+            snapshot.forEach(function(doc) {
+                messages.push(doc.data());
+            });
+            
+            // Atualiza o contador de mensagens no botão
+            var el = document.getElementById('msg-count');
+            if(el) el.innerText = messages.length;
+
+            // Atualiza a lista dentro do Modal
+            var container = document.getElementById('messages-container');
+            if(!container) return;
             
             if (messages.length === 0) {
                 container.innerHTML = '<p style="font-size: 0.85rem; color: #888; padding: 15px;">Nenhum recado ainda. Seja o primeiro a escrever!</p>';
             } else {
-                container.innerHTML = messages.map(m => `
-                    <div class="msg-card">
-                        <div class="msg-header">
-                            <span>${m.name}</span>
-                            <span class="msg-time">${m.time}</span>
-                        </div>
-                        <div class="msg-body">"${m.msg}"</div>
-                    </div>
-                `).join('');
+                container.innerHTML = messages.map(function(m) {
+                    return '<div class="msg-card">' +
+                        '<div class="msg-header">' +
+                            '<span>' + m.name + '</span>' +
+                            '<span class="msg-time">' + m.time + '</span>' +
+                        '</div>' +
+                        '<div class="msg-body">"' + m.msg + '"</div>' +
+                    '</div>';
+                }).join('');
             }
-            openModal('modal-messages');
+        });
+
+        // 6. Enviar um recado novo para o Firebase
+        function sendRegistry(e) {
+            e.preventDefault();
+            var nameEl = document.getElementById('guest-name');
+            var msgEl = document.getElementById('guest-msg');
+            if(!nameEl || !msgEl) return;
+
+            var name = nameEl.value;
+            var msg = msgEl.value;
+            var time = new Date().toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            var timestamp = firebase.firestore.FieldValue.serverTimestamp(); // Grava a hora exata
+
+            // Muda o botão para mostrar que está a carregar
+            var btn = document.querySelector('.guest-message-form .btn-submit');
+            var originalText = btn.innerText;
+            btn.innerText = 'A enviar...';
+            btn.disabled = true;
+
+            // Guardar na base de dados
+            db.collection("recados").add({
+                name: name,
+                msg: msg,
+                time: time,
+                createdAt: timestamp
+            }).then(function() {
+                alert('Obrigado pelo carinho, ' + name + '! A sua mensagem foi registada! ❤️');
+                nameEl.value = '';
+                msgEl.value = '';
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }).catch(function(error) {
+                alert('Erro ao enviar. Tente novamente mais tarde.');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
         }
 
+        // 7. WhatsApp e Contagem Regressiva
         function confirmRSVP(e) {
             e.preventDefault();
-            const name = document.getElementById('rsvp-name').value;
-            const guests = document.getElementById('rsvp-guests').value;
-            const phone = "5521987954278";
-            const message = `Olá! Gostaria de confirmar minha presença no Chá de Bebê da Lívia Sophia.\n\n*Nome:* ${name}\n*Acompanhantes:* ${guests}`;
-            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`, '_blank');
+            var name = document.getElementById('rsvp-name').value;
+            var guests = document.getElementById('rsvp-guests').value;
+            var phone = "5521987954278";
+            var message = "Olá! Gostaria de confirmar a minha presença no Chá de Bebê da Lívia Sophia.\n\n*Nome:* " + name + "\n*Acompanhantes:* " + guests;
+            window.open("https://api.whatsapp.com/send?phone=" + phone + "&text=" + encodeURIComponent(message), '_blank');
             closeModal('modal-rsvp');
         }
 
         function updateCountdown() {
-            const eventDate = new Date('November 29, 2026 14:30:00').getTime();
-            const now = new Date().getTime();
-            const difference = eventDate - now;
+            var eventDate = new Date('November 29, 2026 14:30:00').getTime();
+            var now = new Date().getTime();
+            var difference = eventDate - now;
+
+            var dEl = document.getElementById('days');
+            var hEl = document.getElementById('hours');
+            var mEl = document.getElementById('mins');
+            var sEl = document.getElementById('secs');
+
+            if (!dEl || !hEl || !mEl || !sEl) return;
 
             if (difference > 0) {
-                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
-                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById('mins').innerText = minutes < 10 ? '0' + mins : minutes;
-                document.getElementById('secs').innerText = seconds < 10 ? '0' + seconds : seconds;
+                dEl.innerText = days < 10 ? '0' + days : days;
+                hEl.innerText = hours < 10 ? '0' + hours : hours;
+                mEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+                sEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+            } else {
+                dEl.innerText = '00';
+                hEl.innerText = '00';
+                mEl.innerText = '00';
+                sEl.innerText = '00';
             }
         }
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-        updateMessageCount();
+        window.onload = function() {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        };
     </script>
-</body>
-</html>
